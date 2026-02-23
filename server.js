@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { route: procurementRoute } = require("./routes/procurement");
-const { route: usersRoute } = require("./routes/users");
+const { route: procurementRoute } = require("./routes/procurementRoutes");
+const { route: usersRoute } = require("./routes/userRoutes");
 const { route: cashSalesRoute } = require("./routes/cashSales");
 const { route: creditSalesRoute } = require("./routes/creditSales");
 const swaggerUi = require("swagger-ui-express");
@@ -17,7 +17,7 @@ const swaggerDefinition = {
   info: {
     title: "KGL API",
     version: "1.0.0",
-    description: "KGL API Documentation",
+    description: "This is KGL API Documentation",
   },
   servers: [
     {
@@ -35,7 +35,7 @@ const options = {
 const swaggerAuth = basicAuth({
   users: { admin: "123456" },
   challenge: true,
-  realm: "Swagger Documentation",
+  realm: "Swagger Documentation"
 });
 
 // Swagger specs

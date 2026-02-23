@@ -1,32 +1,37 @@
+const express = require("express");
 const {
-  addProcurementController,
-  getProcurementController,
-} = require("../controllers/procurement");
+  addCreditSalesController,
+  getCreditSalesController,
+} = require("../controllers/creditSales");
 const route = express.Router();
-const { authMiddleware, isManagerMiddleware } = require("../middlewares/auth");
+const {
+  authMiddleware,
+  isSalesAgentMiddleware,
+  isManagerMiddleware,
+} = require("../middlewares/auth");
 
 /**
  * @swagger
- * /addProcurement:
+ * /addCreditSales:
  *   post:
- *     summary: Add Procurement
- *     description: Add Procurement
+ *     summary: Add Credit Sales
+ *     description: Add Credit Sales
  *     tags:
- *       - Procurement
+ *       - Credit Sales
  *     parameters:
  *       - in: body
  *         name: body
- *         description: Procurement object
+ *         description: Credit Sales object
  *         required: true
  *         schema:
- *           $ref: '#/components/schemas/Procurement'
+ *           $ref: '#/components/schemas/CreditSales'
  *     responses:
  *       200:
- *         description: Procurement added successfully
+ *         description: Credit Sales added successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Procurement'
+ *               $ref: '#/components/schemas/CreditSales'
  *       400:
  *         description: Bad request
  *         content:
@@ -41,27 +46,27 @@ const { authMiddleware, isManagerMiddleware } = require("../middlewares/auth");
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 route.post(
-  "/addProcurement",
+  "/addCreditSales",
   authMiddleware,
-  isManagerMiddleware,
-  addProcurementController,
+  isSalesAgentMiddleware,
+  addCreditSalesController,
 );
 
 /**
  * @swagger
- * /getProcurement:
+ * /getCreditSales:
  *   get:
- *     summary: Get Procurement
- *     description: Get Procurement
+ *     summary: Get Credit Sales
+ *     description: Get Credit Sales
  *     tags:
- *       - Procurement
+ *       - Credit Sales
  *     responses:
  *       200:
- *         description: Procurement retrieved successfully
+ *         description: Credit Sales retrieved successfully
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Procurement'
+ *               $ref: '#/components/schemas/CreditSales'
  *       400:
  *         description: Bad request
  *         content:
@@ -76,10 +81,10 @@ route.post(
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 route.get(
-  "/getProcurement",
+  "/getCreditSales",
   authMiddleware,
   isManagerMiddleware,
-  getProcurementController,
+  getCreditSalesController,
 );
 
 module.exports = { route };
